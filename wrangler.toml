@@ -1,0 +1,30 @@
+name = "stock-notif"
+main = "index.js"
+compatibility_date = "2025-08-02"
+
+kv_namespaces = [
+  { binding = "AMUL_COUNTERS", id = "<INSERT_ID>" }
+]
+
+[triggers]
+crons = [
+  "*/15 * * * *",     # every 15m
+  "29 18 * * *",      # daily @ 23:59 IST
+  "29 18 * * 6",      # weekly on Saturday @23:59 IST
+  "29 18 1 * *"       # monthly on 1st @23:59 IST (reports prior month)
+]
+
+
+
+
+[observability]
+enabled = true
+head_sampling_rate = 1.0
+
+[observability.logs]
+enabled = true
+
+[env.paused]
+
+[env.paused.triggers]
+crons = []
